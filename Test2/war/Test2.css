@@ -1,0 +1,285 @@
+/** Add css rules here for your application. */
+
+
+/** Example rules used by the template application (remove for your app) */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  margin: 40px 0px 70px;
+  text-align: center;
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+  width: 400px;
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.serverResponseLabelError {
+  color: red;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+  margin: 15px 6px 6px;
+}
+
+.box{
+    width: 50px;
+    height: 50px;
+    background: grey;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: absolute;
+	border: 3px solid black;
+	cursor:pointer;
+}
+
+.highlight
+{
+	background : yellow;
+}
+
+body
+{
+	background-color:lavender;
+}
+.container 
+{
+	width : 1200px;
+	margin: 0 auto;
+	position: absolute;
+	left : 20%;
+}
+
+.middle
+{
+	width:825px;
+	margin:0 auto;
+}
+
+div.box:hover
+{
+	background-color : yellow;
+}
+#box0
+{
+    top: 150px;
+    left: 0px;
+}
+#box1
+{
+    top: 80px;
+    left: 60px;
+}
+#box2
+{
+    top: 10px;
+    left: 130px;
+}
+#box3
+{
+    top: 10px;
+    left: 250px;
+}
+#box4
+{
+    top : 150px;
+    left: 250px;
+}
+#box5
+{
+    top : 150px;
+    left : 130px;
+}
+#box6
+{
+    top: 260px;
+    left: 130px;
+}
+#box7
+{
+    top: 260px;
+    left: 250px;
+}
+#box8
+{
+    top : 150px;
+    left : 370px;
+}
+
+
+.line{
+    width: 5px;
+    height: 43px;
+    background-color: black;
+    position: absolute;
+}
+
+#line1
+{
+	left: 52.5px;
+	top: 119px;
+    transform: rotate(40deg);
+    -webkit-transform: rotate(40deg);
+    -ms-transform: rotate(40deg); 
+}
+#line2
+{	
+	left: 90.5px;
+	top: 138px;
+	height: 75px !important;
+	transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg); 
+}
+
+#line3
+{	
+	left: 215px;
+	top: 139px;
+	height: 67px !important;
+	transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg); 
+}
+#line4
+{	
+	left: 121px;
+	top: 116px;
+	height: 48px !important;
+	transform: rotate(130deg);
+    -webkit-transform: rotate(130deg);
+    -ms-transform: rotate(130deg); 
+}
+#line5
+{
+	left: 116.5px;
+	top: 44px;
+	height : 51px;
+    transform: rotate(40deg);
+    -webkit-transform: rotate(40deg);
+    -ms-transform: rotate(40deg); 
+}
+#line6
+{	
+	left: 215px;
+	top: 0px;
+	height: 67px !important;
+	transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg); 
+}
+#line7
+{	
+	left: 335px;
+	top: 138px;
+	height: 69px !important;
+	transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg); 
+}
+#line8
+{	
+	left: 156px;
+	top: 65.5px;
+	height: 85px !important;
+}
+#line9
+{	
+	left: 156px;
+	top: 202.5px;
+	height: 58px !important;
+}
+
+#line10
+{	
+	left: 276px;
+	top: 65.5px;
+	height: 85px !important;
+}
+
+#line11
+{	
+	left: 90px;
+	top: 174px;
+	height: 117px !important;
+	transform: rotate(130deg);
+    -webkit-transform: rotate(130deg);
+    -ms-transform: rotate(130deg); 
+}
+
+#line12
+{	
+	left: 216px;
+	top: 177px;
+	height: 111px !important;
+	transform: rotate(130deg);
+    -webkit-transform: rotate(130deg);
+    -ms-transform: rotate(130deg); 
+}
+
+#line13
+{	
+	left: 334px;
+	top: 178px;
+	height: 111px !important;
+	transform: rotate(47deg);
+    -webkit-transform: rotate(47deg);
+    -ms-transform: rotate(47deg); 
+}
+
+span
+{
+	position: absolute;
+	top: 9px;
+	left: 19px;
+	font-size: 25px;
+}
+
+.Data
+{
+	position: absolute;
+	left: 420px;
+	top:15px;
+}
+
+#btn1
+{
+    position: absolute;
+    top: 360px;
+    left: 110px;
+	width: 100px;
+    height: 50px;
+}
+#op
+{
+	position: absolute;
+    top: 430px;
+}
+
+#btn2
+{
+    position: absolute;
+    top: 360px;
+    left: 240px;
+	width: 100px;
+    height: 50px;
+}
+
+.footer
+{
+	position: fixed;
+	bottom: 50px;
+	right: 10px;
+}
