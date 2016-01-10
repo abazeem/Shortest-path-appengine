@@ -2,67 +2,106 @@ function select( id )
 {
 	document.getElementById('btn2').addEventListener("click",clear1);
 	var count = 0;
-	$(".highlight").each(function()
+	$(".highlight2").each(function()
 	{
 		if($(this).attr('id') == id )
 		{
 			var node2 = document.getElementById(id);
 			node2.setAttribute("class" , "box")
-			exit;
+			return;
 		}
 		count++;
 	});
-	if ( count == 2 )
-		return;
-	var node = document.getElementById(id);
-	var text = node.getAttribute("class");
-	node.setAttribute("class" ,text+" highlight");
+	if(count < 2)
+	{
+		var node = document.getElementById(id);
+		var text = node.getAttribute("class");
+		node.setAttribute("class" ,text+" highlight2");
+		if(count == 1)
+			document.getElementById('text2').innerHTML = "<h3>Select the connecting nodes</h3>";
+	}
+	else
+	{
+		
+		var node2 = document.getElementById(id);
+		var text2 = node2.getAttribute("class");
+		node2.setAttribute("class",text2 + " highlight");
+	}
 }
 
 
 function clear1()
 {
+	var id;
+	var node3;
 	document.getElementById('op').innerHTML = "";
 	$(".highlight").each(function()
 	{
-		var id = $(this).attr('id');
-		var node3 = document.getElementById(id);
+		id = $(this).attr('id');
+		node3 = document.getElementById(id);
 		node3.setAttribute("class","box");
 	});
+	$(".highlight2").each(function()
+	{
+		id = $(this).attr('id');
+		node3 = document.getElementById(id);
+		node3.setAttribute("class","box");
+	});
+	document.getElementById('text2').innerHTML = "<h3>Select source and destination</h3>"
 }
 
 
 function compute()
 {
-	var count = 0;
-	var src;
-	var target;
-	document.getElementById("op").innerHTML = "";
-	$(".highlight").each(function()
-	{
-		if(count == 0)
-			src = $(this).attr('id');
-		else
+		var count = 0;
+		var s = "";
+		var textid;
+		var t = "";
+		document.getElementById("op").innerHTML = "";
+		$(".highlight").each(function()
 		{
-			if(count == 1)
-				target = $(this).attr('id');
-		}
-		count++;
-	});
-	if ( count != 2 )
-		document.getElementById("op").innerHTML = "Please select any 2 nodes";
-	else
-	{
-		var s = src.charAt(src.length - 1);
-		var t = target.charAt(target.length - 1);
-		src = s + "";
-		target = t + "";
+			textid = $(this).attr('id');
+			s+= textid.charAt(textid.length - 1);
+		});
+		$(".highlight2").each(function()
+		{
+			textid = $(this).attr('id');
+			t+= textid.charAt(textid.length - 1);
+		});
+//	if ( count != 2 )
+//		document.getElementById("op").innerHTML = "Please select any 2 nodes";
+//	else
+	//{
 		$.post("register/Display.jsp",
-    		    { sr: src , tr: target},
+    		    { sr: s, tr : t},
     		    function(data){
     		    	document.getElementById("op").innerHTML = data;
+    		    	data = document.getElementById("op").innerText;
+    		    	if(data == "")
+    		    	{
+    		    		document.getElementById('op').innerText = "No path found";
+    		    		var id;
+    		    		var node3;
+    		    		$(".highlight").each(function()
+    		    		{
+    		    			id = $(this).attr('id');
+    		    			node3 = document.getElementById(id);
+    		    			node3.setAttribute("class","box");
+    		    		});
+    		    		$(".highlight2").each(function()
+    		    		{
+    		    			id = $(this).attr('id');
+    		    			node3 = document.getElementById(id);
+    		    			node3.setAttribute("class","box");
+    		    		});
+    		    		return;
+    		    	}
+    		    	
     		    	var element = document.getElementById("op");
     		    	var fulltext = element.innerText;
+    		    	if(!fulltext)
+    		    		fulltext = element.textContent;
+    		    	fulltext = fulltext.toString();
     		    	var arry = fulltext.split(" ");
     		    	var len = arry.length;
     		    	
@@ -74,7 +113,7 @@ function compute()
     		    	}
     		    	
     		    });
-	}
+//	}
 }
 
 function disp1 (Str)
@@ -82,26 +121,29 @@ function disp1 (Str)
 	var flag = false;
 	var path = {};
 	var c = 0;
-	path[c] = Str.charAt(0);
+	var temp5 = Str.charAt(0);
+	path[c] = temp5;
 	var dist = "";
 	c++;
 	
 	for ( var i = 1; i < Str.length; i++)
 	{
-		if( Str.charAt(i) == '_' )
+		temp5 = Str.charAt(i);
+		if( temp5 == '_' )
 		{
 			flag = true;
 			continue;
 		}
 		if( flag == true )
 		{
-			dist += Str.charAt(i);
+			dist += temp5;
 		}
 		else
 		{
-			path[c] = Str.charAt(i);
+			var temp2 = temp5;
+			path[c] = temp2;
 			c++;
-			var temp = "box" + Str.charAt(i);
+			var temp = "box" + temp2;
 			mark(temp);
 		}
 	}
@@ -119,7 +161,8 @@ function disp2(Str , x)
 	var flag = false;
 	var path = {};
 	var c = 0;
-	path[c] = Str.charAt(0);
+	var temp3 = Str.charAt(0);
+	path[c] = temp3;
 	var dist = "";
 	c++;
 	var txt = "";
@@ -127,18 +170,19 @@ function disp2(Str , x)
 		txt += "</br>Other paths :"
 	for ( var i = 1; i < Str.length; i++)
 	{
-		if( Str.charAt(i) == '_' )
+		var temp4 = Str.charAt(i);
+		if( temp4 == '_' )
 		{
 			flag = true;
 			continue;
 		}
 		if( flag == true )
 		{
-			dist += Str.charAt(i);
+			dist += temp4;
 		}
 		else
 		{
-			path[c] = Str.charAt(i);
+			path[c] = temp4;
 			c++;
 		}
 	}
@@ -155,5 +199,7 @@ function disp2(Str , x)
 function mark (id)
 {
 	var Node = document.getElementById(id);
-	Node.setAttribute("class" , "box highlight");
+	var getClass = Node.getAttribute("class");
+	if(getClass.indexOf("highlight2") == -1)
+		Node.setAttribute("class" , "box highlight");
 }

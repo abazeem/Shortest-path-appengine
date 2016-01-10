@@ -11,15 +11,22 @@ public class ImgGraph {
 		List = new ArrayList<Integer>();
 	}
 	
-	public String implement(Graph graph, int src, int target)
+	public String implement(Graph graph, String str1, String str2)
 	{
+		ArrayList<Integer> inputs = new ArrayList<Integer>();
+		int src = (int) str2.charAt(0) - 48;
+		int target = (int) str2.charAt(str2.length()-1) - 48;
+		for(int i = 0; i< str1.length(); i++)
+			inputs.add((int)str1.charAt(i) - 48);
 		int nodes = 9;
 		Output output= null;
 		boolean[] visited = new boolean[nodes];
 		visited[src] = true;
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		list.add(src);
-		output = DFS(graph,visited,src,target,list, 0,output);
+		output = DFS(graph,visited,src,target,list, 0,output, inputs);
+		if(output == null)
+			return "";
 		int min = 1000;
 		Output Min = null;
 		Output head = output;
@@ -37,7 +44,7 @@ public class ImgGraph {
 		return result;
 	}
 	
-	public static Output DFS(Graph graph, boolean[] visited, int src , int target, ArrayList<Integer> List, int dist, Output output)
+	public static Output DFS(Graph graph, boolean[] visited, int src , int target, ArrayList<Integer> List, int dist, Output output, ArrayList<Integer> inputs)
 	{
 		if( src != target)
 		{
@@ -76,29 +83,36 @@ public class ImgGraph {
 					List.add(x.val);
 					sub = x.dist;
 					dist = dist + x.dist;	
-					output = DFS(graph,visited,x.val,target,List,dist,output);
+					output = DFS(graph,visited,x.val,target,List,dist,output,inputs);
 				}
 				x = x.next;
 			}
 		}
 		else
 		{
-//			Iterator<Integer> it = List.iterator();
-//			while(it.hasNext())
-//			{
-//				System.out.print(it.next());
-//			}
-//			System.out.println("");
-//			System.out.println(dist);
-			if(output == null)
+			boolean flag = false;
+			for(int i = 0; i< inputs.size(); i++)
+			{
+				if(List.contains(inputs.get(i)))
+					flag = true;
+				else
+				{
+					flag = false;
+					break;
+				}
+			}
+			if(output == null && flag)
 				output = new Output(dist,List);
 			else
 			{
-				Output last = output;
-				while(last.next!=null)
-					last = last.next;
-				last.next = new Output(dist,List);
-				return output;
+				if(flag)
+				{
+					Output last = output;
+					while(last.next!=null)
+						last = last.next;
+					last.next = new Output(dist,List);
+					return output;
+				}
 			}
 		}
 		return output;
